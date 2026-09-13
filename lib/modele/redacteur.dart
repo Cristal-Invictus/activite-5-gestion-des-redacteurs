@@ -1,0 +1,42 @@
+class Redacteur {
+  const Redacteur({
+    required this.id,
+    required this.nom,
+    required this.prenom,
+    required this.email,
+  });
+
+  const Redacteur.sansId({
+    required this.nom,
+    required this.prenom,
+    required this.email,
+  }) : id = null;
+
+  final int? id;
+  final String nom;
+  final String prenom;
+  final String email;
+
+  Map<String, dynamic> toMap() {
+    final map = <String, dynamic>{
+      'nom': nom,
+      'prenom': prenom,
+      'email': email,
+    };
+
+    if (id != null) {
+      map['id'] = id;
+    }
+
+    return map;
+  }
+
+  factory Redacteur.fromMap(Map<String, Object?> map) {
+    return Redacteur(
+      id: map['id'] as int?,
+      nom: map['nom'] as String,
+      prenom: map['prenom'] as String,
+      email: map['email'] as String,
+    );
+  }
+}
